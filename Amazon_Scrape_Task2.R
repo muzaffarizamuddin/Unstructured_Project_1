@@ -1,4 +1,8 @@
 install.packages("openxlsx")
+install.packages("rvest")
+install.packages("httr")
+install.packages("tidyverse")
+install.packages("curl")
 
 library(rvest)
 library(httr)
