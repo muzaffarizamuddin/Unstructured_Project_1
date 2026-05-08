@@ -9,11 +9,15 @@ library(htmltools)
 library(htmlwidgets)
 
 urls <- c(
-  "https://www.azlyrics.com/lyrics/creed/onelastbreath.html",
-  "https://www.azlyrics.com/lyrics/franksinatra/myway.html",
+  "https://www.azlyrics.com/lyrics/lowkey/palestinewillneverdie.html",
+  "https://www.azlyrics.com/lyrics/macklemore/hindshall.html",
   "https://www.azlyrics.com/lyrics/lisa14627/dream.html",
-  "https://www.azlyrics.com/lyrics/yungkai/blue.html",
-  "https://www.azlyrics.com/lyrics/cranberries/zombie.html"
+  "https://www.azlyrics.com/lyrics/michaelheart/wewillnotgodownsongforgaza.html",
+  "https://www.azlyrics.com/lyrics/eminem/stan.html",
+  "https://www.azlyrics.com/lyrics/eminem/liketoysoldiers.html",
+  "https://www.azlyrics.com/lyrics/eminem/stan.html",
+  "https://www.azlyrics.com/lyrics/eminem/lovethewayyoulie.html",
+  "https://www.azlyrics.com/lyrics/rihanna/lovethewayyouliepartii.html"
 )
 
 output_dir <- "lyrics_folder"
@@ -62,8 +66,6 @@ cat("All scraping complete!\n")
 # ==============================================================================
 # PART 2: TEXT CLEANING (NLP via tm package)
 # ==============================================================================
-cat("Starting text cleanup...\n")
-
 csv_files <- list.files(output_dir, pattern = "*.csv", full.names = TRUE)
 all_word_counts <- data.frame()
 
@@ -79,6 +81,7 @@ for (file in csv_files) {
   full_text <- paste(df$Lyrics, collapse = " ")
   
   # Build and clean the Corpus
+  badwords<-c("fuck","shit","fucking","woo","bitch")#sorry as some songs have bad words need to remove
   mycorpus <- VCorpus(VectorSource(full_text))
   
   docs_1 <- tm_map(mycorpus, toSpace, "-") 
@@ -86,6 +89,7 @@ for (file in csv_files) {
   docs_1 <- tm_map(docs_1, content_transformer(tolower))
   docs_1 <- tm_map(docs_1, removeNumbers)
   docs_1 <- tm_map(docs_1, removeWords, stopwords("english"))
+  docs_1 <- tm_map(docs_1, removeWords, badwords)
   docs_1 <- tm_map(docs_1, stripWhitespace)
   
   # Convert to Term Document Matrix
@@ -111,13 +115,13 @@ cat("Text cleanup complete!\n")
 cat("Generating HTML files...\n")
 
 songs <- unique(all_word_counts$song)
-
-# Create an empty list to hold our HTML elements
 my_html_page <- list()
-
-# Add a main title to the top of the page
-my_html_page[[1]] <- tags$h1("Song Lyrics Word Clouds", style="font-family: Arial; text-align: center; color: #333; margin-bottom: 40px;")
-
+my_html_page[[1]] <- tags$div(
+  style = "font-family: Arial; text-align: center; margin-bottom: 40px; padding: 20px; background-color: #f9f9f9; border-radius: 10px;",
+  tags$h1("Song Lyrics Word Clouds", style = "color: #333; margin-bottom: 10px;"),
+  tags$p(tags$strong("Author: "), "Muzaffar Izamuddin bin Daud", style = "margin: 5px 0; color: #555; font-size: 1.1em;"),
+  tags$p(tags$strong("Organization: "), "UKM, P166246", style = "margin: 5px 0; color: #555; font-size: 1.1em;")
+)
 # Loop through each song to create a cloud and a title
 for (s in songs) {
   
@@ -144,8 +148,4 @@ for (s in songs) {
     style = "border: none; overflow: hidden;"
   )
 }
-
-# 5. Save the main index.html file!
 save_html(tagList(my_html_page), file = "index.html")
-
-cat("SUCCESS! Your 'index.html' has been created. Open it to view all your word clouds!\n")
