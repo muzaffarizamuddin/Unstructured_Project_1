@@ -7,6 +7,7 @@ library(tm)
 library(wordcloud2)
 library(htmltools)
 library(htmlwidgets)
+library(dplyr)
 
 urls <- c(
   "https://www.azlyrics.com/lyrics/lowkey/palestinewillneverdie.html",
@@ -64,7 +65,7 @@ cat("All scraping complete!\n")
 
 
 # ==============================================================================
-# PART 2: TEXT CLEANING (NLP via tm package)
+# PART 2: TEXT CLEANING (via tm package)
 # ==============================================================================
 csv_files <- list.files(output_dir, pattern = "*.csv", full.names = TRUE)
 all_word_counts <- data.frame()
@@ -106,11 +107,28 @@ for (file in csv_files) {
   all_word_counts <- rbind(all_word_counts, d)
 }
 
+cat("\n--- Word Frequency Summary by Song (Freq >= 5) ---\n")
+
+unique_songs <- unique(all_word_counts$song)
+for (s in unique_songs) {
+  song_table <- all_word_counts %>%
+    filter(song == s, freq >= 5) %>%
+    arrange(desc(freq)) %>%
+    select(word, freq) # Keep only word and freq for a cleaner look
+  
+  # Only print if there is data to show
+  if (nrow(song_table) > 0) {
+    cat("\n>> SONG:", s, "\n")
+    print(song_table, row.names = FALSE)
+    cat(rep("-", 30), "\n") # Visual separator
+  }
+}
+
 cat("Text cleanup complete!\n")
 
 
 # ==============================================================================
-# PART 3: GENERATE HTML WITH IFRAMES (Pandoc-Free Fix)
+# PART 3: GENERATE HTML FOR HOSTING WORDCLOUD
 # ==============================================================================
 cat("Generating HTML files...\n")
 
