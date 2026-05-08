@@ -1,0 +1,107 @@
+# Load necessary libraries
+library(rvest)
+library(httr)
+library(stringr)
+
+# ==============================================================================
+# SETTINGS & FOLDER
+# ==============================================================================
+output_dir <- "News_Articles_80"
+if(!dir.exists(output_dir)) dir.create(output_dir)
+
+# Define your lists here (populate with your 40 links each)
+politics_urls <- c(
+  "https://www.rt.com/india/639609-us-strategy-iran-war-kanwal-sibal/",
+  "https://www.rt.com/news/612261-israel-lebanon-invasion-un/"
+  # ... Add 38 more links here
+)
+
+science_urls <- c(
+  "https://www.nasa.gov/organizations/oiir/artemis-accords/nasa-welcomes-paraguay-as-67th-artemis-accords-signatory/",
+  "https://science.nasa.gov/earth/earth-observatory/tracy-arms-post-tsunami-landscape/",
+  "https://www.nasa.gov/blogs/spacestation/2026/05/07/dna-inspired-treatments-space-agriculture-top-crews-research-schedule/",
+  "https://www.nasa.gov/solar-system/planets/mars/nasa-pushes-next-gen-mars-helicopter-rotor-blades-past-mach-1/",
+  "https://www.nasa.gov/directorates/esdmd/artemis-campaign-development-division/human-landing-system-program/industry-moon-lander-training-cabin-lands-at-nasa-for-artemis/",
+  "https://science.nasa.gov/science-research/ai-foundation-model-in-orbit/",
+  "https://www.nasa.gov/image-article/a-light-in-the-dark/",
+  "https://www.nasa.gov/humans-in-space/nasas-simulated-mars-mission-marks-200-days-inside-habitat/",
+  "https://science.nasa.gov/earth/earth-observatory/a-sea-of-spinning-clouds/",
+  "https://www.nasa.gov/blogs/spacestation/2026/05/06/lab-hardware-life-support-gear-and-human-research-fill-crews-day/",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  # ... Add 38 more links here
+)
+all_links <- list("Political_Views" = politics_urls, "Science_Technology" = science_urls)
+
+# ==============================================================================
+# DUAL-MODE SCRAPER
+# ==============================================================================
+scrape_news <- function(url, theme) {
+  tryCatch({
+    Sys.sleep(1) # Delay to prevent getting blocked
+    
+    res <- GET(url, add_headers(`User-Agent` = "Mozilla/5.0"))
+    page <- read_html(res)
+    
+    # --- RT.COM SELECTORS ---
+    if(grepl("rt.com", url)) {
+      # Per your Selector Gadget findings:
+      title <- page %>% html_node(".article__heading") %>% html_text(trim = TRUE)
+      # Extract all 'p' nodes within the article body
+      content <- page %>% html_nodes(".article__text p") %>% html_text(trim = TRUE) %>% paste(collapse = "\n\n")
+    } 
+    
+    # --- NASA.GOV SELECTORS ---
+    else if(grepl("nasa.gov", url)) {
+      title <- page %>% html_node("h1") %>% html_text(trim = TRUE)
+      # NASA uses standard p tags for news releases
+      content <- page %>% html_nodes("p") %>% html_text(trim = TRUE) %>% paste(collapse = "\n\n")
+    }
+
+    # Verify we got data
+    if(is.na(title) || nchar(content) < 50) {
+      message(paste("Skipping (Empty):", url))
+      return(NULL)
+    }
+
+    # Create a safe filename (remove symbols that Windows/Mac don't like)
+    clean_title <- str_replace_all(title, "[^[:alnum:]]", "_") %>% str_sub(1, 60)
+    file_name <- paste0(theme, "_", clean_title, ".txt")
+    file_path <- file.path(output_dir, file_name)
+    
+    # Save File: First line is Title, followed by Content
+    writeLines(c(paste("TITLE:", title), "\n", content), file_path)
+    return(TRUE)
+    
+  }, error = function(e) {
+    message(paste("Error with:", url))
+    return(NULL)
+  })
+}
+
+# ==============================================================================
+# RUN SCRAPER
+# ==============================================================================
+for(theme in names(all_links)) {
+  urls <- all_links[[theme]]
+  for(url in urls) {
+    cat("Processing:", url, "\n")
+    scrape_news(url, theme)
+  }
+}
+
+cat("\nFinished! Check the folder:", output_dir)

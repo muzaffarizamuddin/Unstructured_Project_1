@@ -1,0 +1,120 @@
+library(rvest)
+library(httr)
+library(stringr)
+
+# ==============================================================================
+# SETTINGS
+# ==============================================================================
+output_dir <- "News_Articles"
+if(!dir.exists(output_dir)) dir.create(output_dir)
+
+# Base index pages
+rt_index <- "https://www.rt.com/"
+nasa_index <- "https://science.nasa.gov/science-news/"
+
+# ==============================================================================
+# PHASE 1: AUTOMATED URL DISCOVERY
+# ==============================================================================
+get_urls <- function(index_url, site_type) {
+  page <- read_html(GET(index_url, add_headers(`User-Agent` = "Mozilla/5.0")))
+  
+  if(site_type == "RT") {
+    links <- page %>% html_nodes("a") %>% html_attr("href")
+    full_links <- paste0("https://www.rt.com", links[grepl("^/(news|india|russia|business)/", links)])
+  } else {
+    links <- page %>% html_nodes(".hds-a11y-heading-22 a") %>% html_attr("href")
+    full_links <- ifelse(grepl("^http", links), links, paste0("https://science.nasa.gov", links))
+  }
+  return(unique(full_links))
+}
+
+cat("Discovering URLs...\n")
+politics_links <- get_urls(rt_index, "RT")[5:46] 
+
+
+get_paginated_urls_nasa <- function(target_count = 40) {
+  found_links <- c()
+  page_num <- 1
+  
+  while(length(found_links) < target_count) {
+    cat(paste0("  Searching NASA Page ", page_num, "...\n"))
+    
+    # 1. Construct the paginated URL
+    current_url <- paste0("https://www.nasa.gov/news-release/page/", page_num, "/")
+    
+    tryCatch({
+      res <- GET(current_url, add_headers(`User-Agent` = "Mozilla/5.0"))
+      page <- read_html(res)
+      
+      # 2. Extract raw links
+      raw <- page %>% html_nodes("a") %>% html_attr("href")
+      
+      # 3. Apply the Filter Logic:
+      # - Must contain /news-release/
+      # - Must NOT end in a trailing slash followed by a number (pagination)
+      # - Must NOT be exactly the news-release root index
+      new_links <- raw[grepl("/news-release/.+", raw)] # Requires at least one char after the slash
+      
+      # Remove links that are just pagination (e.g., /page/2/ or ending in /digits/)
+      new_links <- new_links[!grepl("/page/[0-9]+", new_links)]
+      new_links <- new_links[!grepl("/news-release/$", new_links)] 
+      
+      # 4. Convert to absolute URLs
+      new_links <- ifelse(grepl("^http", new_links), new_links, paste0("https://www.nasa.gov", new_links))
+      
+      # 5. Add only unique, non-NA links
+      found_links <- unique(c(found_links, na.omit(new_links)))
+      
+      cat(paste0("  Accumulated ", length(found_links), " valid articles...\n"))
+      
+      page_num <- page_num + 1
+      
+      # Break if we hit a wall
+      if(page_num > 15) break 
+      
+    }, error = function(e) {
+      cat("  Error or end of archive reached.\n")
+      break
+    })
+  }
+  
+  # Return exactly 40
+  return(found_links[1:target_count])
+}
+science_links <- get_paginated_urls_nasa(40)
+print(science_links)
+
+
+all_links <- list("Political_Views" = politics_links, "Science_Technology" = science_links)
+
+# ==============================================================================
+# PHASE 2: CONTENT SCRAPER
+# ==============================================================================
+scrape_article <- function(url, theme) {
+  tryCatch({
+    Sys.sleep(1) 
+    page <- read_html(GET(url, add_headers(`User-Agent` = "Mozilla/5.0")))
+    
+    if(grepl("rt.com", url)) {
+      title <- page %>% html_node(".article__heading") %>% html_text(trim = TRUE)
+      content <- page %>% html_nodes(".article__text p") %>% html_text(trim = TRUE) %>% paste(collapse = "\n\n")
+    } else {
+      title <- page %>% html_node("h1") %>% html_text(trim = TRUE)
+      content <- page %>% html_nodes("p") %>% html_text(trim = TRUE) %>% paste(collapse = "\n\n")
+    }
+
+    if(!is.na(title) && nchar(content) > 100) {
+      clean_title <- str_replace_all(title, "[^[:alnum:]]", "_") %>% str_sub(1, 60)
+      file_path <- file.path(output_dir, paste0(theme, "_", clean_title, ".txt"))
+      writeLines(c(paste("TITLE:", title), "\n", content), file_path)
+    }
+  }, error = function(e) NULL)
+}
+
+# Run the Scraper
+for(theme in names(all_links)) {
+  cat("\nProcessing", theme, "...\n")
+  lapply(all_links[[theme]], scrape_article, theme = theme)
+}
+
+cat("\nDone! Check your folder for 80 files.")

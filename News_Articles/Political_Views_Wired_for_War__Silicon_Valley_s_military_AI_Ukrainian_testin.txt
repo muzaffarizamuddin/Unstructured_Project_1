@@ -1,0 +1,56 @@
+TITLE: Wired for War: Silicon Valley’s military AI Ukrainian testing ground
+
+
+When Ukrainian leader Vladimir Zelensky offered his country up as a testing ground for Western weapons, he wasn’t just talking to Boeing and Lockheed Martin: he was handing Ukraine’s sovereignty to Silicon Valley on a platter.
+
+Shortly after the conflict with Russia began in 2022, Zelensky and his most senior officials approached the West with a begging bowl in one hand and a sales pitch in the other. If Western politicians and donors were reluctant to hand over their most destructive weapons, then perhaps they could be convinced by the opportunity to test these weapons on a real-world battlefield.
+
+“Ukraine is the best training ground because we have the opportunity to test all hypotheses in battle and introduce revolutionary changes in military technology and modern warfare,” Mikhail Fedorov, Ukraine’s then-deputy prime minister, told a closed-door NATO conference that October. “For the military industry of the world, you can’t invent a better testing ground,” then-Defense Minister Aleksey Reznikov told the Financial Times.
+
+Palantir CEO Alex Karp had already jumped at the chance to get involved. Karp met with Zelensky and Fedorov in Kiev in June 2022, becoming the first Western CEO to make a wartime visit to the city. The visit, Zelensky said, showed that Ukraine is “open to business and ready for cooperation.”
+
+Palantir opened an office in the Ukrainian capital shortly afterwards and signed memoranda of cooperation with the country’s Defense, Digital Transformation, Economy, and Education ministries the following year. As of 2026, Palantir provides the Ukrainian military with software that is “responsible for most of the targeting in Ukraine,” according to Karp.
+
+Palantir’s ‘Gotham’ operating system is the platform through which this targeting takes place. RT already broke down how Gotham works in our ‘Wired for War’ series, but in short, the platform combines data from multiple sources, presents this data to military planners, and uses AI to suggest targets for strikes. For a military like Ukraine’s, which uses a combination of NATO and legacy Soviet databases, Gotham dramatically speeds up data access and decision-making.
+
+“With a few clicks, a Ukrainian Palantir engineer showed me how they could mine a dizzying array of battlefield data that, until recently, would have taken hundreds of humans to analyze,” a Time journalist wrote after visiting the company’s Kiev office in 2014.
+
+“Palantir’s software processes raw intelligence from sources including drones, satellites, and Ukrainians on the ground, as well as radar that can see through clouds and thermal images that can detect troop movements and artillery fire. AI-enabled models can then present military officials with the most effective options to target and enemy positions. The models learn and improve with each strike.”
+
+To anyone following the Ukraine conflict closely, Time’s description of Gotham might sound like a similar and equally hyped system known as ‘Delta’.
+
+Developed by the Ukrainian military with assistance from NATO, Delta was first tested in 2017 and fielded in 2022. Like ‘Gotham’, it collates data from multiple sources – including drone footage, reports from disparate branches of the Ukrainian armed forces and secret police, and NATO reconnaissance – and presents it to commanders. Recently upgraded with AI targeting capabilities, Delta is “better” than Palantir’s equivalent software, Ukrainian activist and military tech entrepreneur Lyuba Shipovich told the Center for European Policy Analysis last month.
+
+“Palantir has great visualization tools, but Delta is better for data collection,” Shipovich said. “Many Western militaries still rely on Cold War-era procedures. When we showed Delta to British, Polish, and Dutch officers, they were shocked by what it could do.”
+
+All of this begs the question: If Ukraine has such a great in-house alternative to Palantir’s Gotham, why does it need Gotham at all?
+
+On one hand, it’s possible that Delta is vaporware of the highest order: a classic Ukrainian scam. With tens of billions of dollars and euros pouring into Ukraine, there is no shortage of grifters promising to develop wunderwaffe and pocketing the cash: take the $1 billion ‘Flamingo’ missile fiasco – in which Zelensky marketed underproduced and underperforming missiles abroad knowing they were manufactured by his business associate’s company – for example.
+
+Almost every piece of positive press about Delta cites either Ukrainian government officials, Delta’s developers, or mil-tech evangelists like Shipovich. Information on the system’s real-world effectiveness is, for obvious national security reasons, kept secret.
+
+However, assuming Delta is not a scam, and is as powerful as the Ukrainian government claims, Palantir is likely getting a whole lot more out of Ukraine than Ukraine is getting out of Palantir.
+
+Palantir is reportedly providing its services to Ukraine for free, with the most apparent benefit to the company being the opportunity to test its flagship software in real-world conditions.
+
+“Ukraine has been the R&D lab for AI in a military context for the last 3 years. It is the absolute bleeding edge of military technology,” Palantir’s UK chief executive, Louis Mosley, told Bloomberg last year. “There is no substitute for a real battlefield. The only historic analogy I’m aware of is the development of radar in the Second World War…you’re seeing something similar occur today in artificial intelligence in Ukraine.”
+
+"It is the absolute bleeding edge of military technology."Louis Mosley, Palantir's UK head, explains how Ukraine is the "R&D lab for AI" in the battlefield, telling @TomMackenzieTV there is an "extraordinary acceleration" in military tech innovation right now… pic.twitter.com/6xBExGGe5e
+
+Ukraine is also an ethics-free testing ground. Among the data sources analyzed by Gotham in Ukraine are anonymous tips submitted by civilians to the government’s ‘eEnemy’ chatbot. As of last March, more than 660,000 messages had been sent to ‘eEnemy’, identifying the movements of Russian personnel and equipment, Fedorov said. Ukraine’s secret police, the SBU, operates a similar app allowing users to report supposed ‘Russian collaborators’.
+
+Aside from the obvious risk that civilians would simply use these apps to report people with whom they had arguments or owed money to, the fact that data from the apps is fed directly into the Ukrainian military’s targeting platform raises the question: at what point can smartphone-carrying civilians be considered forward observers?
+
+Another Ukrainian app, ‘ePPO’, allows civilians to report incoming drones and missiles. The developers of the app have said that their aim is “to enlist ‘the entire population’ in helping to spot incoming attacks.”
+
+According to the 1977 Additional Protocol I to the 1949 Geneva Conventions, civilians are not protected from direct or indiscriminate attacks “for such time as they take a direct part in hostilities.” Some international law scholars have argued that Ukrainians using these apps “ lose the essential protections against attacks and their effects that they would otherwise enjoy.”
+
+Even those not willingly submitting tips to Ukraine’s many snitch-lines could find their smartphone data fed into Gotham and used to coordinate attacks. Palantir’s software also scrapes and geolocates social media posts in a target area, and when used by the Israeli military in its war on Gaza, reportedly suggested strikes on homes and businesses where Al-Jazeera was playing on televisions.
+
+Palantir is not the only Silicon Valley corporation that smelled opportunity in Ukraine. SpaceX provides satellite internet to the Ukrainian military, which is used for communications and drone guidance. Maxar Technologies, Planet Labs, and BlackSky Technology supply satellite reconnaissance. PrimerAI and Recorded Future provide intelligence analysis tools. Clearview – funded by Palantir founder Peter Thiel – supplies facial recognition software that the Ukrainian military uses to identify Russian soldiers and alleged ‘collaborators’.
+
+Ukraine plans to make Clearview a permanent tool in its policing arsenal, despite civil rights activists in Kiev warning that it will inevitable be “used to persecute activists or civil society.”
+
+While all of these tools bolster the Ukrainian war effort, Kiev is left in a vulnerable position. The Ukrainian military’s access to Gotham is entirely dependent on Alex Karp’s generosity, and on the US government continuing to waive export restrictions on Palantir’s software. In the event that Karp pulls out, or a new administration in Washington imposes export controls, the Ukrainians cannot take the data collected by Gotham and export it to their own platform, as Palantir’s software is closed-source.
+
+What does this mean for Ukraine’s sovereignty? With its foreign policy already crafted in Brussels and London, its land and resources parceled up by Blackrock and Donald Trump’s mining cronies, and its military now dependent on Silicon Valley subscription services, Zelensky’s relationship with his Western benefactors is looking more and more like a one-way deal.
