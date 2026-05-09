@@ -1,0 +1,33 @@
+Driving AI adoption with purpose: Turning vision into measurable impact
+
+KUALA LUMPUR: FOUNDED in 1997, the SRKK Group evolved from a hardware-centric business into a trusted digital transformation partner. Today, it stands at the forefront of innovation, helping Malaysian enterprises harness the power of artificial intelligence (AI) to achieve real, measurable outcomes.
+
+Through its long-standing partnership with Microsoft, SRKK has expanded beyond cloud infrastructure to deliver end-to-end solutions, with strengths spanning cybersecurity, business applications and data.
+
+SRKK's commitment to purposeful AI was recently recognised at the PIKOM Digital Excellence Awards 2025, where it received the prestigious Artificial Intelligence (AI) award.
+
+-Advertisement-
+What does this recognition mean for SRKK and your journey as one of Malaysia's leading IT solutions providers?
+
+It validates our strategic direction. As AI gained traction, we focused on delivering solutions that solve real problems. We invested in staff accreditation, built AI-driven projects, and helped clients envision their AI-enabled future. This award is a testament to our team's dedication to aligning technology with client priorities.
+
+SRKK has been driving digital transformation for more than 25 years. How has your AI strategy evolved, and what role does it play in supporting organisations today?
+
+
+Our strategy centres on measurable outcomes. We don't deploy AI for the sake of it — too many projects fail because they lack the right foundation. With over 80 per cent of AI projects failing due to unclear goals, we start by defining success—often through proof-of-concept pilots or prototypes. Once validated, we transition to full deployment.
+
+What do you see as the right foundation for companies that want to adopt AI?
+
+Alignment is key. Many organisations struggle because leadership and operations aren't on the same page. We step in to bridge that gap, facilitating discussions, mapping priorities, and identifying use cases that deliver measurable value. From there, we co-develop a roadmap for AI adoption.
+
+Could you share some real-world examples where your AI solutions have helped clients innovate, improve efficiency or strengthen security?
+
+Malaysia's most advanced container terminal engaged SRKK for an AI-enabled information and document management system. With such a solution, the information stored will be more structured and centralised across departments, allowing easier retrieval of documents. As the system is AI-enabled, it automatically stores files in the right folder based on its content, thus reducing human errors.
+
+Malaysia's largest multi-brand automobile dealership engaged SRKK to provide an AI-powered chatbot designed to:
+
+- Assist their personnel in diagnosing and troubleshooting routine IT-related issues. In the event the IT-related issues cannot be resolved by the virtual IT helpdesk, the chatbot can also generate support tickets and escalate the issue to the appropriate IT personnel to resolve;
+
+- Assist personnel with human resources-related processes such as checking leave balances and applying for leave.
+
+The Group mapped out the operational processes that need to be automated, laid out the steps and processes to be carried out for each event to programme the AI-powered chatbot, install and configure the AI-powered chatbot so that it is integrated with the customers' existing database and applications to retrieve information.

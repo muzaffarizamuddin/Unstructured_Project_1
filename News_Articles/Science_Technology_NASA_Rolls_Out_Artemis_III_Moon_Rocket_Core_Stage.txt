@@ -18,15 +18,3 @@ Building, assembling, and transporting the core stage is a collaborative process
 Next year’s Artemis III mission will launch astronauts to Earth’s orbit aboard the Orion spacecraft on top of SLS to test rendezvous and docking capabilities between Orion and commercial spacecraft needed to land Artemis IV astronauts on the Moon in 2028. NASA’s SLS is the only rocket capable of sending Orion, astronauts, and supplies to the Moon in a single launch.
 
 As part of the Golden Age of innovation and exploration, NASA will send Artemis astronauts on increasingly difficult missions to explore more of the Moon for scientific discovery, economic benefits, establish an enduring human presence on the lunar surface, and to build on our foundation for the first crewed missions to Mars.
-
-Learn more about NASA’s Artemis program:
-
-https://www.nasa.gov/artemis
-
--end-
-
-James GannonHeadquarters, Washington202-664-7828james.h.gannon@nasa.gov
-
-Jonathan DealMarshall Space Flight Center, Huntsville, Ala.256-631-9126jonathan.e.deal@nasa.gov
-
-NASA explores the unknown in air and space, innovates for the benefit of humanity, and inspires the world through discovery.
